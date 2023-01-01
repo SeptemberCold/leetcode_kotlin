@@ -51,6 +51,35 @@ object Leetcode002 {
     }
 
     /**
+     * 递归方式
+     * 执行用时：200 ms
+     * 内存消耗：40.5 MB
+     */
+    private fun addTwoNumbers02(l1: ListNode?, l2: ListNode?): ListNode? {
+        //两个链表都是空的 返回null 用于结束递归
+        if (l1 == null && l2 == null) return null
+        //缓存赋值 kotlin不能对参数直接操作
+        var temp1 = l1
+        var temp2 = l2
+        //如果有链表长度不够就补上
+        if (temp1 == null) temp1 = ListNode(0)
+        if (temp2 == null) temp2 = ListNode(0)
+        //计算两者之和
+        val `val` = temp1.`val` + temp2.`val`
+        //大于十直接加到链表下一个节点
+        if (`val` >= 10) {
+            if (temp1.next == null) temp1.next = ListNode(0)
+            temp1.next!!.`val` = temp1.next!!.`val` + 1
+        }
+        //保存计算得到的值，大于10就减10
+        val listNode = ListNode(if (`val` >= 10) `val` - 10 else `val`)
+        //下一个节点的递归
+        listNode.next = addTwoNumbers02(temp1.next, temp2.next)
+        return listNode
+    }
+
+
+    /**
      * 链表
      */
     class ListNode(var `val`: Int) {
@@ -61,17 +90,33 @@ object Leetcode002 {
     @JvmStatic
     fun main(args: Array<String>) {
         val testData = getTestData()
-        println("0->${System.currentTimeMillis()}")
+        println("方法一开始->${System.currentTimeMillis()}")
         for (index in testData.indices) {
             if (index % 2 != 0) continue
             if (index + 1 > testData.size - 1) break
             var result = addTwoNumbers01(testData[index], testData[index + 1])
+            var str = ""
             while (result != null) {
-                println("${result.`val`}")
+                str += result.`val`
                 result = result.next
             }
-            println("${index + 1}->${System.currentTimeMillis()}")
+            println(str)
+            println("耗时:${index + 1}->${System.currentTimeMillis()}")
         }
+        println("方法二开始->${System.currentTimeMillis()}")
+        for (index in testData.indices) {
+            if (index % 2 != 0) continue
+            if (index + 1 > testData.size - 1) break
+            var result = addTwoNumbers02(testData[index], testData[index + 1])
+            var str = ""
+            while (result != null) {
+                str += result.`val`
+                result = result.next
+            }
+            println(str)
+            println("耗时:${index + 1}->${System.currentTimeMillis()}")
+        }
+
     }
 
     /**
