@@ -78,6 +78,38 @@ object Leetcode002 {
         return listNode
     }
 
+    /**
+     * 新生成一个链表
+     * 执行用时：200 ms
+     * 内存消耗：42.5 MB
+     */
+    private fun addTwoNumbers03(l1: ListNode?, l2: ListNode?): ListNode? {
+        var temp1 = l1
+        var temp2 = l2
+        val head = ListNode(0)
+        var temp = head
+        var sum = 0
+        while (temp1 != null || temp2 != null || sum != 0) {
+            //加一号链表的数据
+            if (temp1 != null) {
+                sum += temp1.`val`
+                temp1 = temp1.next
+            }
+            //加二号链表的数据
+            if (temp2 != null) {
+                sum += temp2.`val`
+                temp2 = temp2.next
+            }
+            //值保存
+            temp.next = ListNode(sum % 10)
+            //跳到下一个节点
+            temp = temp.next!!
+            //逢十进一处理
+            sum /= 10
+        }
+        return head.next
+    }
+
 
     /**
      * 链表
@@ -89,12 +121,13 @@ object Leetcode002 {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        val testData = getTestData()
+        //利用一号链表测试，会破坏一号链表
+        val data1 = getTestData()
         println("方法一开始->${System.currentTimeMillis()}")
-        for (index in testData.indices) {
+        for (index in data1.indices) {
             if (index % 2 != 0) continue
-            if (index + 1 > testData.size - 1) break
-            var result = addTwoNumbers01(testData[index], testData[index + 1])
+            if (index + 1 > data1.size - 1) break
+            var result = addTwoNumbers01(data1[index], data1[index + 1])
             var str = ""
             while (result != null) {
                 str += result.`val`
@@ -103,11 +136,28 @@ object Leetcode002 {
             println(str)
             println("耗时:${index + 1}->${System.currentTimeMillis()}")
         }
+        //递归方法测试
+        val data2 = getTestData()
         println("方法二开始->${System.currentTimeMillis()}")
-        for (index in testData.indices) {
+        for (index in data2.indices) {
             if (index % 2 != 0) continue
-            if (index + 1 > testData.size - 1) break
-            var result = addTwoNumbers02(testData[index], testData[index + 1])
+            if (index + 1 > data2.size - 1) break
+            var result = addTwoNumbers02(data2[index], data2[index + 1])
+            var str = ""
+            while (result != null) {
+                str += result.`val`
+                result = result.next
+            }
+            println(str)
+            println("耗时:${index + 1}->${System.currentTimeMillis()}")
+        }
+        //新链表方法测试
+        val data3 = getTestData()
+        println("方法三开始->${System.currentTimeMillis()}")
+        for (index in data3.indices) {
+            if (index % 2 != 0) continue
+            if (index + 1 > data3.size - 1) break
+            var result = addTwoNumbers03(data3[index], data3[index + 1])
             var str = ""
             while (result != null) {
                 str += result.`val`
