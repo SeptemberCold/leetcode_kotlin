@@ -17,7 +17,7 @@ object Leetcode001 {
      * 执行用时：336 ms
      * 内存消耗：36.4 MB
      */
-    fun twoSum01(nums: IntArray, target: Int): IntArray? {
+    private fun twoSum01(nums: IntArray, target: Int): IntArray? {
         for (first in nums.indices) {
             for (second in nums.indices) {
                 if (first != second) {
@@ -34,7 +34,7 @@ object Leetcode001 {
      * 执行用时：244 ms
      * 内存消耗：37.1 MB
      */
-    fun twoSum02(nums: IntArray, target: Int): IntArray? {
+    private fun twoSum02(nums: IntArray, target: Int): IntArray? {
         val map = HashMap<Int, Int>()
         for (index in nums.indices) {
             val key = target - nums[index]
@@ -54,7 +54,7 @@ object Leetcode001 {
      *
      * 这种方式java执行用时只需2ms 内存消耗41.4 MB
      */
-    fun twoSum03(nums: IntArray, target: Int): IntArray? {
+    private fun twoSum03(nums: IntArray, target: Int): IntArray? {
         val map = HashMap<Int, Int>()
         for (index in nums.indices) {
             if (map.containsKey(nums[index])) {
@@ -67,9 +67,24 @@ object Leetcode001 {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        twoSum01(intArrayOf(), 0)
-        twoSum02(intArrayOf(), 0)
-        twoSum03(intArrayOf(), 0)
+        val testData = getTestData()
+        println("1->${System.currentTimeMillis()}")
+        testData.forEach { twoSum01(it.value, it.key) }
+        println("2->${System.currentTimeMillis()}")
+        testData.forEach { twoSum02(it.value, it.key) }
+        println("3->${System.currentTimeMillis()}")
+        testData.forEach { twoSum03(it.value, it.key) }
+        println("4->${System.currentTimeMillis()}")
+    }
+
+    /**
+     * 获取测试用例
+     */
+    private fun getTestData(): Map<Int, IntArray> {
+        val map = HashMap<Int, IntArray>()
+        map[6] = intArrayOf(1, 2, 3, 4, 5)
+        map[4] = intArrayOf(1, 2, 3, 4, 8)
+        return map
     }
 
 }
