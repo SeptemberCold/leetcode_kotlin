@@ -1,4 +1,4 @@
-package main.kotlin.com.lin.leetcode.page001
+package com.lin.leetcode.page001
 
 /**
  *
