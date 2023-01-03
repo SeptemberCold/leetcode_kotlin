@@ -20,7 +20,7 @@ object Leetcode003 {
                 temp.add(c)
             } else {
                 var str = ""
-                var b= ""
+                var b = ""
                 for (tempC in temp) {
                     str += tempC
                 }
@@ -51,7 +51,38 @@ object Leetcode003 {
         return i
     }
 
-
+    /**
+     * 结果比较
+     * 执行用时：188 ms
+     * 内存消耗：35 MB
+     */
+    private fun lengthOfLongestSubstring02(s: String): Int {
+        if (s.length == 1) return 1
+        //用于存储结果
+        var result = 0
+        //用于计数
+        var start = 0
+        //转成数组
+        val charArray = s.toCharArray()
+        //遍历
+        for (end in charArray.indices) {
+            //对前面进行遍历
+            for (i in start until end) {
+                //如果前面的char与当前char存在相等 进行返回值处理
+                if (charArray[i] == charArray[end]) {
+                    if (result < end - start ) {
+                        result = end - start
+                    }
+                    start = i + 1
+                    break
+                }
+            }
+        }
+        if (result < s.length  - start ) {
+            return s.length  - start
+        }
+        return result
+    }
 
 
     @JvmStatic
@@ -61,6 +92,10 @@ object Leetcode003 {
             val result = lengthOfLongestSubstring01(it)
             println("测试结果->${it}=${result}")
         }
+        testData.forEach {
+            val result = lengthOfLongestSubstring02(it)
+            println("测试结果->${it}=${result}")
+        }
     }
 
     /**
@@ -68,8 +103,11 @@ object Leetcode003 {
      */
     private fun getTestData(): List<String> {
         val data = ArrayList<String>()
-        data.add("operwabcdaefgh")
-//        data.add("abcdrefgh")
+        data.add("operwabcdaefgh123456")
+        data.add("abcdrefgh")
+        data.add("aaabcdrefgh")
+        data.add(" ")
+        data.add("au")
         return data
     }
 
