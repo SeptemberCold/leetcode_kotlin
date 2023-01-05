@@ -9,10 +9,13 @@ object Leetcode1803 {
 
     /**
      * 暴力破解
-     * 超出时间限制
+     * 执行用时: 1188 ms
+     * 内存消耗: 41.8 MB
      */
     private fun countPairs(nums: IntArray, low: Int, high: Int): Int {
         var sum = 0
+        //排序
+        nums.sort()
         for (i in nums.indices) {
             for (j in i + 1 until nums.size) {
                 val result = nums[i] xor nums[j]
