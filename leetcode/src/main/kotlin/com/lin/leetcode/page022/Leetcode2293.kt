@@ -24,8 +24,10 @@ object Leetcode2293 {
 
     /**
      * 普通算法
+     * 执行用时：200 ms
+     * 内存消耗：35.2 MB
      */
-    private fun minMaxGame(nums: IntArray): Int {
+    private fun minMaxGame01(nums: IntArray): Int {
         val map = HashMap<Int, Int>()
         for (i in nums.indices) {
             map[i] = nums[i]
@@ -51,11 +53,40 @@ object Leetcode2293 {
         return map[0]!!
     }
 
+    /**
+     * 递归算法
+     * 执行用时：244 ms
+     * 内存消耗：35.6 MB
+     */
+    private fun minMaxGame02(nums: IntArray): Int {
+        if (nums.size == 1) {
+            return nums[0]
+        }
+        val arr = IntArray(nums.size / 2)
+        for (i in arr.indices) {
+            val i1 = nums[2 * i]
+            val i2 = nums[2 * i + 1]
+            if (i % 2 == 0) {
+                val min = min(i1, i2)
+                arr[i] = min
+            } else {
+                val max = max(i1, i2)
+                arr[i] = max
+            }
+        }
+        return minMaxGame02(arr)
+    }
+
     @JvmStatic
     fun main(args: Array<String>) {
         getTestData().forEach {
-            val minMaxGame = minMaxGame(it)
+            val minMaxGame = minMaxGame01(it)
             println(minMaxGame)
+        }
+        println("=======================")
+        getTestData().forEach {
+            val minMaxGame02 = minMaxGame02(it)
+            println(minMaxGame02)
         }
     }
 
