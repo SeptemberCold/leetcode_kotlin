@@ -1,5 +1,7 @@
 package com.lin.leetcode.page018
 
+import kotlin.math.min
+
 /**
  *
  * @author lin
@@ -58,11 +60,37 @@ object Leetcode1813 {
         return true
     }
 
+    /**
+     * 双指针写法
+     * 执行用时：204 ms
+     * 内存消耗：35.1 MB
+     * 思路差不多，先计算前面相似的长度，再计算后面相似的长度
+     * 两个长度相加等于最短的句子就表示句子相似
+     */
+    private fun areSentencesSimilar2(sentence1: String, sentence2: String): Boolean {
+        //两个字符串以空格分隔
+        val split1 = sentence1.split(" ")
+        val split2 = sentence2.split(" ")
+        var i = 0
+        var j = 0
+        while (i < split1.size && i < split2.size && split1[i] == split2[i]) {
+            i++
+        }
+        while (j < split1.size - i && j < split2.size - i && split1[split1.size - j - 1] == split2[split2.size - j - 1]) {
+            j++
+        }
+        return i + j == min(split1.size, split2.size)
+    }
 
     @JvmStatic
     fun main(args: Array<String>) {
         getTestData().forEach {
             val result = areSentencesSimilar(it.key, it.value)
+            println("result=${result}")
+        }
+        println("===========================")
+        getTestData().forEach {
+            val result = areSentencesSimilar2(it.key, it.value)
             println("result=${result}")
         }
 
@@ -74,9 +102,9 @@ object Leetcode1813 {
     private fun getTestData(): Map<String, String> {
         val map = HashMap<String, String>()
         map["My name is Haley"] = "My Haley"
-//        map["of"] = "A lot of words"
-//        map["Eating right now"] = "Eating"
-//        map["Luky"] = "Lucccky"
+        map["of"] = "A lot of words"
+        map["Eating right now"] = "Eating"
+        map["Luky"] = "Lucccky"
         return map
     }
 
