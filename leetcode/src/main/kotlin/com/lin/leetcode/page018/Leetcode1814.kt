@@ -22,7 +22,7 @@ object Leetcode1814 {
      * 执行用时：440 ms
      * 内存消耗：53.6 MB
      */
-    fun countNicePairs(nums: IntArray): Int {
+    private fun countNicePairs(nums: IntArray): Int {
         val mod = 1000000007
         var result = 0
         //哈希表
