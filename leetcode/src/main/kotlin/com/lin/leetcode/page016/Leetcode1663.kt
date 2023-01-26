@@ -41,11 +41,39 @@ object Leetcode1663 {
         return String(answer)
     }
 
+    /**
+     * 贪心算法
+     * 执行用时：248 ms
+     * 内存消耗：36.2 MB
+     */
+    private fun getSmallestString02(n: Int, k: Int): String {
+        val answer = StringBuilder()
+        var sum = k
+        for (i in 1..n) {
+            //剩下的位置全部为'z'和字符串数值的差值
+            val j = sum - (n - i) * 26
+            //还有剩余控件，当前位置可以是最小的'a'
+            if (j <= 0) {
+                sum -= 1
+                answer.append('a')
+            } else {
+                sum -= j
+                answer.append('a' + j - 1)
+            }
+        }
+        return answer.toString()
+    }
+
 
     @JvmStatic
     fun main(args: Array<String>) {
         getTestData().forEach {
             val answer = getSmallestString(it.key, it.value)
+            println("${it.key} = $answer")
+        }
+        println("==============================")
+        getTestData().forEach {
+            val answer = getSmallestString02(it.key, it.value)
             println("${it.key} = $answer")
         }
     }
