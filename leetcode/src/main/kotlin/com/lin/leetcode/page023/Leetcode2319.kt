@@ -45,11 +45,11 @@ object Leetcode2319 {
 
     private fun getTestData(): List<Array<IntArray>> {
         val array = ArrayList<Array<IntArray>>()
-//        array.add(
-//            arrayOf(
-//                intArrayOf(5, 0, 0, 1), intArrayOf(0, 4, 1, 5), intArrayOf(0, 5, 2, 0), intArrayOf(4, 1, 0, 2)
-//            )
-//        )
+        array.add(
+            arrayOf(
+                intArrayOf(5, 0, 0, 1), intArrayOf(0, 4, 1, 5), intArrayOf(0, 5, 2, 0), intArrayOf(4, 1, 0, 2)
+            )
+        )
         array.add(
             arrayOf(
                 intArrayOf(2, 0, 0, 1), intArrayOf(0, 3, 1, 0), intArrayOf(0, 5, 2, 0), intArrayOf(4, 0, 0, 2)
