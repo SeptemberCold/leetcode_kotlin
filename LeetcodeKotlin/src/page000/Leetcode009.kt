@@ -33,14 +33,12 @@ object Leetcode009 {
     /**
      * int翻转比较
      *
-     * 执行用时：192 ms
-     * 内存消耗：34.8 MB
+     * 执行用时：228 ms
+     * 内存消耗：34.2 MB
      */
     fun isPalindrome2(x: Int): Boolean {
         //负数直接判断
         if (x < 0) return false
-        //被10整除的也直接判断
-        if (x % 10 == 0 && x != 0) return false
         //缓存数 以1234为列 temp = 1234
         var temp = x
         //翻转数
@@ -52,7 +50,6 @@ object Leetcode009 {
             turnOver = turnOver * 10 + remainder
             //剩余翻转的数 temp = 123 12 1 0
             temp /= 10
-            if (temp == turnOver) return true
         }
         return turnOver == x
     }
