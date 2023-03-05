@@ -54,5 +54,31 @@ object Leetcode009 {
         return turnOver == x
     }
 
+    /**
+     * 只翻转一半的int
+     *
+     * 执行用时：208 ms
+     * 内存消耗：34.1 MB
+     */
+    fun isPalindrome3(x: Int): Boolean {
+        //负数直接判断
+        if (x < 0) return false
+        //被10整除的也直接判断
+        if (x % 10 == 0 && x != 0) return false
+        //缓存数 以1234为列 temp = 1234
+        var temp = x
+        //翻转数
+        var turnOver = 0
+        while (temp > turnOver) {
+            //求出余数 remainder = 4 3 2 1
+            val remainder = temp % 10
+            //计算总和 turnOver = 4 43 432 4321
+            turnOver = turnOver * 10 + remainder
+            //剩余翻转的数 temp = 123 12 1 0
+            temp /= 10
+        }
+        return turnOver == temp || temp == turnOver / 10
+    }
+
 
 }

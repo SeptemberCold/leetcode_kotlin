@@ -15,16 +15,17 @@ object LeetcodeTest009 {
     @JvmStatic
     fun main(args: Array<String>) {
         val example = getExample()
+        methodTest(example) { return@methodTest Leetcode009.isPalindrome(it) }
+        methodTest(example) { return@methodTest Leetcode009.isPalindrome2(it) }
+        methodTest(example) { return@methodTest Leetcode009.isPalindrome3(it) }
+    }
+
+    private fun methodTest(example: List<Int>, method: (x: Int) -> Boolean) {
         example.forEach {
-            val isPalindrome = Leetcode009.isPalindrome(it)
+            val isPalindrome = method(it)
             println("输入:x=${it}")
             println("输出:${isPalindrome}")
-        }
-        println("============================")
-        example.forEach {
-            val isPalindrome = Leetcode009.isPalindrome2(it)
-            println("输入:x=${it}")
-            println("输出:${isPalindrome}")
+            println("====================")
         }
     }
 
