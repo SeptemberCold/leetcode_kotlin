@@ -20,6 +20,12 @@ object LeetcodeTest009 {
             println("输入:x=${it}")
             println("输出:${isPalindrome}")
         }
+        println("============================")
+        example.forEach {
+            val isPalindrome = Leetcode009.isPalindrome2(it)
+            println("输入:x=${it}")
+            println("输出:${isPalindrome}")
+        }
     }
 
     private fun getExample(): List<Int> {
