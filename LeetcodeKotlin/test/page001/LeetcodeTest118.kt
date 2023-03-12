@@ -9,6 +9,8 @@ object LeetcodeTest118 : LeetcodeBaseTest<Int, List<List<Int>>>() {
     fun main(args: Array<String>) {
         val example = getExample()
         methodTest(example) { return@methodTest Leetcode118.generate(it) }
+        println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+        methodTest(example) { return@methodTest Leetcode118.generate2(it) }
     }
 
 
