@@ -9,8 +9,8 @@ abstract class LeetcodeBaseTest<EXAMPLE, RESULT> {
 
 //    @JvmStatic
 //    fun main(args: Array<String>) {
-//        val example = LeetcodeTest119.getExample()
-//        LeetcodeTest119.methodTest(example) { return@methodTest Leetcode119.getRow(it) }
+//        val example = getExample()
+//        methodTest(example) { return@methodTest  }
 //    }
 
     /**
@@ -20,9 +20,9 @@ abstract class LeetcodeBaseTest<EXAMPLE, RESULT> {
 
 //    private fun methodTest(example: List<Int>, method: (x: Int) -> Boolean) {
 //        example.forEach {
-//            val isPalindrome = method(it)
+//            val result = method(it)
 //            println(" ‰»Î:x=${it}")
-//            println(" ‰≥ˆ:${isPalindrome}")
+//            println(" ‰≥ˆ:${result}")
 //            println("====================")
 //        }
 //    }
