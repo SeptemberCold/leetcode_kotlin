@@ -17,6 +17,7 @@ object LeetcodeTest387 : BaseTest<String, Int>() {
     @JvmStatic
     fun main(args: Array<String>) {
         methodTest(getExample()) { return@methodTest Leetcode387().firstUniqChar(it) }
+        methodTest(getExample()) { return@methodTest Leetcode387().firstUniqChar2(it) }
     }
 
     override fun getExample(): List<String> {

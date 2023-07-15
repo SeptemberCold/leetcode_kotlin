@@ -42,4 +42,23 @@ class Leetcode387 {
         return -1
     }
 
+    /**
+     * 方法一的优化
+     *
+     * 执行用时：256 ms
+     * 内存消耗：36.5 MB
+     */
+    fun firstUniqChar2(s: String): Int {
+        val temp = HashMap<Char, Int>()
+        for (c in s) {
+            temp[c] = (temp[c] ?: 0) + 1
+        }
+        for (i in s.indices) {
+            if (temp[s[i]] == 1) {
+                return i
+            }
+        }
+        return -1
+    }
+
 }
