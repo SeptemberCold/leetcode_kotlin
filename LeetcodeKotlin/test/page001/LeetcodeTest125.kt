@@ -1,7 +1,6 @@
-package page000
+package page001
 
 import base.BaseTest
-import page001.Leetcode125
 
 /**
  *
