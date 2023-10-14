@@ -1,5 +1,7 @@
 package page001
 
+import kotlin.math.pow
+
 /**
  *
  * 题目: 颠倒二进制位
@@ -20,19 +22,38 @@ package page001
 class Leetcode190 {
 
     /**
-     * 二进制
+     * 位运算
      * 时间 120ms
      * 内存 31.62MB
      */
     fun reverseBits(n: Int): Int {
         var temp = n
         var rev = 0
-        for(i in 0..31){
-            if (temp==0) break
+        for (i in 0..31) {
+            if (temp == 0) break
             rev = rev or (temp and 1 shl 31 - i)
             temp = temp ushr 1
         }
         return rev
+    }
+
+    /**
+     * 位运算2
+     * 时间 124ms
+     * 内存 30.57MB
+     */
+    fun reverseBits2(n: Int): Int {
+        var sum = 0
+        for (i in 0 until 31) {
+            if ((n ushr 31 - i) and 1 >= 1) {
+                sum += 2.0.pow(i).toInt()
+            }
+        }
+
+        if ((n ushr 0) and 1 >= 1) {
+            sum  = sum or (1 shl 31)
+        }
+        return sum
     }
 
 }
