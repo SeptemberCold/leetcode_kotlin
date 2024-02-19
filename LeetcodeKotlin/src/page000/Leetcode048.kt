@@ -52,4 +52,29 @@ class Leetcode048 {
         }
     }
 
+    /**
+     * 翻转代替旋转 线性代数的知识 淦
+     * 用时：176ms
+     * 内存：34.69MB
+     */
+    fun rotate3(matrix: Array<IntArray>) {
+        val n = matrix.size
+        if (n == 1) return
+        //上下翻转
+        for (i in 0 until n / 2) {
+            val temp = matrix[i]
+            matrix[i] = matrix[n - 1 - i]
+            matrix[n - 1 - i] = temp
+        }
+        //以对角线为准交换数据
+        for (i in 0 until n - 1) {
+            for (j in i + 1 until n) {
+                val temp = matrix[i][j]
+                matrix[i][j] = matrix[j][i]
+                matrix[j][i] = temp
+            }
+        }
+    }
+
+
 }

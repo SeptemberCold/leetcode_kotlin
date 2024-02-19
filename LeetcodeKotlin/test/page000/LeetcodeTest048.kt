@@ -8,6 +8,7 @@ object LeetcodeTest048 : BaseTest<Array<IntArray>, Unit>() {
     fun main(args: Array<String>) {
         methodTest(getExample()) { return@methodTest Leetcode048().rotate(it) }
         methodTest(getExample()) { return@methodTest Leetcode048().rotate2(it) }
+        methodTest(getExample()) { return@methodTest Leetcode048().rotate3(it) }
     }
 
     override fun getExample(): List<Array<IntArray>> {
