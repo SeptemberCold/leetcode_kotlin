@@ -20,18 +20,12 @@ package page001
  */
 class Leetcode105 {
 
-    private lateinit var map: HashMap<Int, Int>
-
     /**
      * µÝ¹é
      * ÓÃÊ±£º247ms
      * ÄÚ´æ£º37.20MB
      */
     fun buildTree(preorder: IntArray, inorder: IntArray): TreeNode {
-        map = HashMap()
-        for (index in inorder.indices) {
-            map[inorder[index]] = index
-        }
         val preorderList = preorder.toMutableList()
         val inorderList = inorder.toMutableList()
         return mBuiltTree(preorderList, inorderList)
