@@ -109,4 +109,21 @@ class Leetcode151 {
         }
     }
 
+    /**
+     * ×Ö·û´®ÇÐ¸î
+     * ÓÃÊ±£º210ms
+     * ÄÚ´æ£º37.20MB
+     */
+    fun reverseWords2(s: String): String {
+        val strings = s.split(' ')
+        val stringBuilder = StringBuilder()
+        for (i in strings.size - 1 downTo 0) {
+            if (strings[i].isNotEmpty()) {
+                stringBuilder.append(strings[i]).append(' ')
+            }
+        }
+        stringBuilder.deleteAt(stringBuilder.length - 1)
+        return stringBuilder.toString()
+    }
+
 }

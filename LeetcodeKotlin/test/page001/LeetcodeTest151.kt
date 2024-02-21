@@ -7,6 +7,7 @@ object LeetcodeTest151 : BaseTest<String, String>() {
     @JvmStatic
     fun main(args: Array<String>) {
         methodTest(getExample()) { return@methodTest Leetcode151().reverseWords(it) }
+        methodTest(getExample()) { return@methodTest Leetcode151().reverseWords2(it) }
     }
 
     override fun getExample(): List<String> {
