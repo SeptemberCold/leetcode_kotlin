@@ -71,9 +71,51 @@ class StringMatchingAlgorithm {
     /**
      * kmp算法
      */
-    fun kmp(str1: String, str2: String): Boolean {
-        //TODO
-        return false
+    fun kmp(haystack: String, needle: String): Boolean {
+        //子串如果==0返回真
+        if (needle.isEmpty()) return true
+        var i = 0
+        var j = 0
+        //最长公共前缀标记表
+        val next = nextBuilder(needle)
+        while (i < haystack.length && j < needle.length) {
+            //如果字符相同，指针移动到下一位
+            if (haystack[i] == needle[j]) {
+                i += 1
+                j += 1
+            }
+            //如果字符不同 子字符串的指针移动到子字符串第一个有共同最长前缀的下标上
+            else {
+                //如果公共前缀下标等于-1表示没有公共前缀 从头比对下一个元素
+                if (j == 0) {
+                    i += 1
+                }else{
+                    j = next[j]
+                }
+            }
+        }
+        return j >= needle.length
+    }
+
+    /**
+     * 构造next数组表
+     */
+    private fun nextBuilder(needle: String): IntArray {
+        val m = needle.length
+        //next数组表
+        val next = IntArray(m)
+        next[0] = -1
+        var t = -1
+        var i = 0
+
+        while (i < m - 1) {
+            if (t < 0 || needle[t] == needle[i]) {
+                t += 1
+                i += 1
+                next[i] = t
+            } else t = next[t]
+        }
+        return next
     }
 
 
