@@ -5,19 +5,28 @@ abstract class LeetcodeBaseTest2<EXAMPLE, RESULT> : LeetcodeBaseTest<EXAMPLE, RE
 
     override fun methodTest(example: List<EXAMPLE>, method: (x: EXAMPLE) -> RESULT) {
         example.forEach {
+            println("输入:${getInput(it)}")
+            //计算
             val result = method(it)
-            if (it is IntArray) {
-                println("输入:x=${intArrayToString(it)}")
-            } else {
-                println("输入:x=${it}")
-            }
-
-            if (result is IntArray) {
-                println("输出:${intArrayToString(result)}")
-            } else {
-                println("输出:${result}")
-            }
+            println("输出:${getOutput(it, result)}")
             println("====================")
+        }
+    }
+
+    private fun getInput(example: EXAMPLE): String {
+        return when (example) {
+            is IntArray -> intArrayToString(example)
+            is CharArray -> String(example)
+            else -> example.toString()
+        }
+    }
+
+    private fun getOutput(input: EXAMPLE, result: RESULT): String {
+        return when (result) {
+            is IntArray -> intArrayToString(result)
+            is CharArray -> String(result)
+            is Unit -> getInput(input)
+            else -> result.toString()
         }
     }
 
