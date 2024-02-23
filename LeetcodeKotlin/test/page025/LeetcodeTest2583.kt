@@ -9,7 +9,7 @@ object LeetcodeTest2583 : BaseTest<LeetcodeTest2583.Data, Long>() {
         methodTest(getExample()) { return@methodTest Leetcode2583().kthLargestLevelSum(it.root, it.k) }
     }
 
-    override fun getExample(): List<LeetcodeTest2583.Data> {
+    override fun getExample(): List<Data> {
         return getArrayList().also {
             it.add(Data(Leetcode2583.TreeNode(5).also { item ->
                 item.left = Leetcode2583.TreeNode(8)
