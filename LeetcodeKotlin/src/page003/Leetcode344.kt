@@ -31,4 +31,21 @@ class Leetcode344 {
         }
     }
 
+    /**
+     * 原地反转
+     * 用时：226ms
+     * 内存：50.07MB
+     */
+    fun reverseString2(s: CharArray){
+        //i是左指针 s.length-1-i是右指针
+        for (i in 0 until s.size / 2) {
+            //第一步 s[i]负责存储两份数据  现在s[i]=a^b    s[s.length-1-i]=b
+            s[i] = (s[i].code xor s[s.size - 1 - i].code).toChar()
+            //第二步 利用s[s.length-1-i]的数据解析出a,公式:a^b^b=a   现在s[i]=a^b    s[s.length-1-i]=a
+            s[s.size - 1 - i] = (s[i].code xor s[s.size - 1 - i].code).toChar()
+            //最后再利用已解析处理的数据把另一份数据解析出来,公式:a^b^a=b  现在s[i]=b   s[s.length-1-i]=a
+            s[i] = (s[i].code xor s[s.size - 1 - i].code).toChar()
+        }
+    }
+
 }

@@ -17,6 +17,7 @@ object LeetcodeTest344 : BaseTest<CharArray, Unit>() {
     @JvmStatic
     fun main(args: Array<String>) {
         methodTest(getExample()) { return@methodTest Leetcode344().reverseString(it) }
+        methodTest(getExample()) { return@methodTest Leetcode344().reverseString2(it) }
     }
 
     override fun getExample(): List<CharArray> {
