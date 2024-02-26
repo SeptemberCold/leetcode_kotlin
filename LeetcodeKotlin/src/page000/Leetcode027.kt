@@ -33,4 +33,38 @@ class Leetcode027 {
         return sum
     }
 
+    /**
+     * 双指针
+     * 用时：170ms
+     * 内存：34.43MB
+     */
+    fun removeElement2(nums: IntArray, `val`: Int): Int {
+        //双指针
+        var index = 0
+        var index2 = 0
+
+        while (index < nums.size) {
+            //如果元素元素等于val 交换
+            if (nums[index] == `val`) {
+                while (index2 < nums.size) {
+                    if (nums[index2] != `val`) {
+                        nums[index] = nums[index2]
+                        nums[index2] = `val`
+                        break
+                    }
+                    index2 += 1
+                }
+            }
+            //如果元素依然相等 意味着没有交换成功
+            if (nums[index] == `val`){
+                return index
+            }
+            //指针向前
+            index += 1
+            index2 += 1
+        }
+
+        return nums.size
+    }
+
 }
