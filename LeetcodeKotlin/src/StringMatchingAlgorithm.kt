@@ -69,6 +69,31 @@ class StringMatchingAlgorithm {
     }
 
     /**
+     * 不知道啥算法 自己想的 利用集合记录前缀匹配成功的下标
+     */
+    fun key2(str1: String, str2: String): Boolean {
+        //将空值处理一下
+        if (str1.isEmpty() && str2.isNotEmpty()) return false
+        if (str2.isEmpty()) return true
+
+        val keys = ArrayList<Int>()
+        for (i in 0 until str1.length - str2.length) {
+            keys.add(i)
+        }
+        for (i in str2.indices) {
+            val temp = HashSet<Int>()
+            for (key in keys) {
+                if (str1[key + i] != str2[i]) {
+                    temp.add(key)
+                }
+            }
+            keys.removeAll(temp)
+        }
+        return keys.isNotEmpty()
+    }
+
+
+    /**
      * kmp算法
      */
     fun kmp(haystack: String, needle: String): Boolean {
@@ -89,7 +114,7 @@ class StringMatchingAlgorithm {
                 //如果公共前缀下标等于-1表示没有公共前缀 从头比对下一个元素
                 if (j == 0) {
                     i += 1
-                }else{
+                } else {
                     j = next[j]
                 }
             }
